@@ -21,12 +21,17 @@ describe('Mocha steps demo', () => {
         await page.goto("https:google.com");
     });
 
-    step('Step 2', async() => {
-        console.log("From step2");
+    step('Step 2 should fail', async() => {
+        // console.log("From step2");
+        await page.waitForSelector('#FAIL');
     });
 
     step('Step 3', async() => {
         console.log("From step3");
+    });
+
+    step('Step 4', async() => {
+        console.log("From step4");
     });
 
     after(async function() {
