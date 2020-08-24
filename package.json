@@ -1,0 +1,28 @@
+{
+  "name": "puppeteerbuilderproject",
+  "version": "1.0.0",
+  "description": "Testing framework example with Mocha steps and Builder class pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marb61a/PuppeteerBuilderExample.git"
+  },
+  "keywords": [
+    "mocha",
+    "puppeteer"
+  ],
+  "author": "Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marb61a/PuppeteerBuilderExample/issues"
+  },
+  "homepage": "https://github.com/marb61a/PuppeteerBuilderExample#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.1",
+    "puppeteer": "^5.2.1"
+  }
+}
