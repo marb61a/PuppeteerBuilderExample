@@ -19,20 +19,9 @@ describe('Mocha steps demo', function () {
         await page.close();
     });
 
-    (0, _mochaSteps.step)('should load google homepage', async function () {
-        await page.goto("https:google.com");
-    });
-
-    (0, _mochaSteps.step)('Step 2 should fail', async function () {
-        // console.log("From step2");
-        await page.waitForSelector('#FAIL');
-    });
-
-    (0, _mochaSteps.step)('Step 3', async function () {
-        console.log("From step3");
-    });
-
-    (0, _mochaSteps.step)('Step 4', async function () {
-        console.log("From step4");
+    (0, _mochaSteps.step)('Should load google homepage', async function () {
+        await page.goto("http://zero.webappsecurity.com/index.html");
+        await page.waitAndClick('#onlineBankingMenu');
+        await page.waitFor(5000);
     });
 });
