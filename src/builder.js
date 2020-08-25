@@ -37,9 +37,23 @@ export default class Builder {
         }
 
         return new Proxy(extendedPage, {
-            get: function(){
-                
+            get: function(_target, property){
+                return extendedPage[property] || browser[property] || page[property];
             }
-        })
+        });
+        
+    }
+
+    constructor(page){
+        this.page = page;
+    }
+
+    async waitAndClick(selector){
+        await this.page.waitForSelector(selector);
+        await this.page.click(selector);
+    }
+
+    async waitAndType(){
+        
     }
 }
