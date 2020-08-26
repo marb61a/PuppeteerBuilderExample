@@ -2,12 +2,15 @@ import { step } from 'mocha-steps';
 import { expect } from 'chai';
 
 import Page from '../builder';
+import LoginPage from '../pages/LoginPages';
 
 describe('Mocha steps demo', () => {
      let page;
+     let loginPage
 
     before(async function(){
         page = await Page.build('Desktop');
+        loginPage = await new LoginPage(page);
     });
 
     after(async function() {
@@ -30,11 +33,17 @@ describe('Mocha steps demo', () => {
     });
 
     step("Should login to application", async() => {
-        await page.waitAndType('#user_login', 'username');
-        await page.waitAndType('#user_password', 'password');
-        await page.waitAndClick('.btn-primary');
+        // await page.waitAndType('#user_login', 'username');
+        // await page.waitAndType('#user_password', 'password');
+        // await page.waitAndClick('.btn-primary');
+        await loginPage.login("username", "password");
         const navbar = await page.isElementVisible('.nav-tabs');
         expect(navbar).to.be.true;
+    });
+
+    step("Should have 6 navbar links", async () => {
+        const navbarLinksCount = await page.getCount(".nav-tabs li");
+        expect (navbarLinksCount).to.equal(6);
     });
 
 });

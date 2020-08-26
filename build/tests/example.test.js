@@ -8,13 +8,19 @@ var _builder = require('../builder');
 
 var _builder2 = _interopRequireDefault(_builder);
 
+var _LoginPages = require('../pages/LoginPages');
+
+var _LoginPages2 = _interopRequireDefault(_LoginPages);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 describe('Mocha steps demo', function () {
     var page = void 0;
+    var loginPage = void 0;
 
     before(async function () {
         page = await _builder2.default.build('Desktop');
+        loginPage = await new _LoginPages2.default(page);
     });
 
     after(async function () {
@@ -37,10 +43,16 @@ describe('Mocha steps demo', function () {
     });
 
     (0, _mochaSteps.step)("Should login to application", async function () {
-        await page.waitAndType('#user_login', 'username');
-        await page.waitAndType('#user_password', 'password');
-        await page.waitAndClick('.btn-primary');
+        // await page.waitAndType('#user_login', 'username');
+        // await page.waitAndType('#user_password', 'password');
+        // await page.waitAndClick('.btn-primary');
+        await loginPage.login("username", "password");
         var navbar = await page.isElementVisible('.nav-tabs');
         (0, _chai.expect)(navbar).to.be.true;
+    });
+
+    (0, _mochaSteps.step)("Should have 6 navbar links", async function () {
+        var navbarLinksCount = await page.getCount(".nav-tabs li");
+        (0, _chai.expect)(navbarLinksCount).to.equal(6);
     });
 });
